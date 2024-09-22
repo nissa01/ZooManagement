@@ -1,22 +1,11 @@
-import java.util.Scanner;
-
 public class Main {
-
     public static void main(String[] args) {
-        ZooManagement zm = new ZooManagement();
+        Animal lion = new Animal("Cats", "Lion", 4, true);
+        Zoo myZoo = new Zoo("Belvedaire Zoo", "Tunis", 20);
+        myZoo.addAnimal(lion, 0);
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Insert the number of cages");
+        System.out.println(myZoo);
 
-        int numberOfCages = sc.nextInt();
-
-        System.out.println("Insert the name of the zoo");
-
-        String nameOfZoo = sc.next();
-
-        zm.nbrCages = numberOfCages;
-        zm.zooName = nameOfZoo;
-
-        System.out.println(zm.zooName+"  comporte  "+zm.nbrCages+"  cages  ");
+        myZoo.displayAnimals();
     }
 }
