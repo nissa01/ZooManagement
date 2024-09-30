@@ -10,4 +10,8 @@ public class Animal {
         this.age = age;
         this.isMammal = isMammal;
     }
+
+
+
+
 }
