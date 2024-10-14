@@ -8,7 +8,7 @@ public class Zoo {
     private int numAnimal;
 
     public Zoo(String name, String city) {
-        setName(name);  // Validating name
+        setName(name);
         this.city = city;
         this.animals = new Animal[nbrCages];
         this.numAnimal = 0;
@@ -46,8 +46,7 @@ public class Zoo {
     public void displayAnimals() {
         for (Animal animal : animals) {
             if (animal != null) {
-                System.out.println("Animal: Family=" + animal.getFamily() + ", Name=" + animal.getName() +
-                        ", Age=" + animal.getAge() + ", Is Mammal=" + animal.isMammal());
+                System.out.println(animal);
             }
         }
     }

@@ -1,11 +1,28 @@
 package tn.esprit.gestionzoo.main;
 
-import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Zoo;
+import tn.esprit.gestionzoo.entities.Aquatic;
+import tn.esprit.gestionzoo.entities.Dolphin;
+import tn.esprit.gestionzoo.entities.Penguin;
+import tn.esprit.gestionzoo.entities.Terrestrial;
 
 public class Main {
     public static void main(String[] args) {
-        Animal tiger = new Animal("Cats", "Tiger", 5, true);
+
+        Dolphin dolphin = new Dolphin("Cetacea", "Dolphin", 9, true, "Ocean", 25.5f);
+        Penguin penguin = new Penguin("Spheniscidae", "Penguin", 4, false, "Antarctica", 200.0f);
+        Terrestrial lion = new Terrestrial("Felidae", "Lion", 5, true, 4);
+        Aquatic genericAquatic = new Aquatic("Generic Family", "Generic Aquatic", 3, true, "Generic Habitat");
+
+
+        System.out.println(dolphin);
+        System.out.println(penguin);
+        System.out.println(lion);
+        genericAquatic.swim();
+        dolphin.swim();
+        penguin.swim();
+    }
+}
+       /* Animal tiger = new Animal("Cats", "Tiger", 5, true);
         Animal lion = new Animal("Cats", "Lion", 8, true);
         Animal tiger2 = new Animal("Cats", "Tiger", 5, true);
 
@@ -32,4 +49,4 @@ public class Main {
         Zoo largerZoo = Zoo.compareZoo(myZoo, myZoo2);
         System.out.println("The zoo with more animals is: " + largerZoo);
     }
-}
+}*/
