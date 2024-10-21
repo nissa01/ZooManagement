@@ -6,7 +6,6 @@ public class Animal {
     private int age;
     private boolean isMammal;
 
-    // Constructor
     public Animal(String family, String name, int age, boolean isMammal) {
         this.family = family;
         this.name = name;
@@ -14,10 +13,8 @@ public class Animal {
         this.isMammal = isMammal;
     }
 
-    // Default constructor
     public Animal() {}
 
-    // Getters and Setters
     public String getFamily() {
         return family;
     }
