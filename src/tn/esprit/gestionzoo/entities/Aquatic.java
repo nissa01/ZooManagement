@@ -1,39 +1,25 @@
 package tn.esprit.gestionzoo.entities;
 
-public abstract class Aquatic extends Animal {
-    private String habitat;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+
+public non-sealed class Aquatic extends Animal {
+
+    protected String habitat;
 
     public Aquatic() {
-        super();
     }
 
-    public Aquatic(String family, String name, int age, boolean isMammal, String habitat) {
+    public Aquatic(String family, String name, int age, boolean isMammal, String habitat) throws InvalidAgeException {
         super(family, name, age, isMammal);
         this.habitat = habitat;
     }
 
-    public String getHabitat() {
-        return habitat;
+    public void swim() {
+        System.out.println("This aquatic animal is swimming.");
     }
-
-    public void setHabitat(String habitat) {
-        this.habitat = habitat;
-    }
-
-    public abstract void swim();
 
     @Override
     public String toString() {
-        return super.toString() + ", Habitat=" + habitat;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Aquatic aquatic = (Aquatic) obj;
-        return this.getName().equals(aquatic.getName()) &&
-                this.getAge() == aquatic.getAge() &&
-                this.getHabitat().equals(aquatic.getHabitat());
+        return super.toString() + ", habitat: " + habitat;
     }
 }

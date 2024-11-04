@@ -1,27 +1,21 @@
 package tn.esprit.gestionzoo.entities;
 
-public class Terrestrial extends Animal {
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+
+public final class Terrestrial extends Animal {
+
     private int nbrLegs;
 
     public Terrestrial() {
-        super();
     }
 
-    public Terrestrial(String family, String name, int age, boolean isMammal, int nbrLegs) {
+    public Terrestrial(String family, String name, int age, boolean isMammal, int nbrLegs) throws InvalidAgeException {
         super(family, name, age, isMammal);
-        this.nbrLegs = nbrLegs;
-    }
-
-    public int getNbrLegs() {
-        return nbrLegs;
-    }
-
-    public void setNbrLegs(int nbrLegs) {
         this.nbrLegs = nbrLegs;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", Number of Legs=" + nbrLegs;
+        return super.toString() + ", nbrLegs: " + nbrLegs;
     }
 }

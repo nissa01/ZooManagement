@@ -1,57 +1,98 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
 public class Main {
     public static void main(String[] args) {
+        Animal lion = null;
+        try {
+            lion = new Animal("Cats", "Simba", 8, true);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
 
-        Animal tiger = new Animal("Cats", "Tiger", 5, true);
-        Animal lion = new Animal("Cats", "Lion", 8, true);
-        Animal tiger2 = new Animal("Cats", "Tiger", 5, true);
 
-        Zoo myZoo = new Zoo("Belvedere Zoo", "Tunis");
-        Zoo myZoo2 = new Zoo("Kef Zoo", "Kef");
+        Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
+        Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
 
-        System.out.println("Adding Tiger: " + myZoo.addAnimal(tiger));
-        System.out.println("Adding Lion: " + myZoo.addAnimal(lion));
-        System.out.println("Adding Tiger2: " + myZoo.addAnimal(tiger2));
+        Animal dog = null;
+        try {
+            dog = new Animal("Canine", "Snoopy", 2, true);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+        Animal cat = null;
+        try {
+            cat = new Animal("Canine", "Snoopy", 3, true);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            myZoo.addAnimal(lion);
+            System.out.println("Lion added successfully.");
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            myZoo.addAnimal(dog);
+            System.out.println("Dog added successfully.");
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        }
 
         myZoo.displayAnimals();
 
-        int index = myZoo.searchAnimal(tiger);
-        if (index != -1) {
-            System.out.println("Tiger found at index: " + index);
-        } else {
-            System.out.println("Tiger not found.");
+        System.out.println("Search Dog: " + myZoo.searchAnimal(dog));
+        Animal dog2 = null;
+        try {
+            dog2 = new Animal("Canine", "lll", 2, true);
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
         }
+        System.out.println("Search Invalid Dog: " + myZoo.searchAnimal(dog2));
 
-        System.out.println("Removing Tiger: " + myZoo.removeAnimal(tiger));
         myZoo.displayAnimals();
 
-        System.out.println("Is zoo full? " + myZoo.isZooFull());
+        System.out.println(myZoo);
 
-        Zoo largerZoo = Zoo.compareZoo(myZoo, myZoo2);
-        System.out.println("The zoo with more animals is: " + largerZoo);
-
-        System.out.println("-------------------------------------------------------");
-
-        Dolphin dolphin = new Dolphin("Cetacea", "Dolphin", 9, true, "Ocean", 25.5f);
-        Penguin penguin = new Penguin("Spheniscidae", "Penguin", 4, false, "Antarctica", 200.0f);
-
-        myZoo.addAquaticAnimal(dolphin);
-        myZoo.addAquaticAnimal(penguin);
-
-        System.out.println("Swimming behavior of aquatic animals:");
-        for (Aquatic aquaticAnimal : myZoo.getAquaticAnimals()) {
-            if (aquaticAnimal != null) {
-                aquaticAnimal.swim();
-            }
+        try {
+            myZoo.addAnimal(lion);
+            myZoo.addAnimal(dog);
+            myZoo.addAnimal(dog2);
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("Maximum swimming depth of penguins: " + myZoo.maxPenguinSwimmingDepth() + " meters");
+        myZoo.displayAnimals();
 
-        myZoo.displayNumberOfAquaticsByType();
+        myZoo.setName("Belvedere Park");
+        Zoo notMyZoo1 = Zoo.comparerZoo(myZoo, notMyZoo);
+        System.out.println("Comparing Zoos: " + notMyZoo1);
 
         System.out.println("-------------------------------------------------------");
+
+        Aquatic aquatic = null;
+        Terrestrial terrestrial = null;
+        try {
+            aquatic = new Aquatic("Fish", "Sardine", 2, true, "Sea");
+            terrestrial = new Terrestrial("Panda", "Narla", 4, true, 2);
+            Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
+            Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
+
+            System.out.println(aquatic);
+            System.out.println(terrestrial);
+            System.out.println(dolphin);
+            System.out.println(penguin);
+
+            aquatic.swim();
+            dolphin.swim();
+            penguin.swim();
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
