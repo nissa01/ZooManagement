@@ -1,18 +1,20 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.enums.Food;
 import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
 import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
+import static tn.esprit.gestionzoo.enums.Food.MEAT;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidAgeException  {
         Animal lion = null;
         try {
             lion = new Animal("Cats", "Simba", 8, true);
         } catch (InvalidAgeException e) {
             System.out.println(e.getMessage());
         }
-
 
         Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
         Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
@@ -23,6 +25,7 @@ public class Main {
         } catch (InvalidAgeException e) {
             System.out.println(e.getMessage());
         }
+
         Animal cat = null;
         try {
             cat = new Animal("Canine", "Snoopy", 3, true);
@@ -77,11 +80,13 @@ public class Main {
 
         Aquatic aquatic = null;
         Terrestrial terrestrial = null;
+        Penguin penguin = null;  // Declare penguin once here
+
         try {
             aquatic = new Aquatic("Fish", "Sardine", 2, true, "Sea");
             terrestrial = new Terrestrial("Panda", "Narla", 4, true, 2);
             Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
-            Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
+            penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);  // Assign penguin here
 
             System.out.println(aquatic);
             System.out.println(terrestrial);
@@ -94,5 +99,11 @@ public class Main {
         } catch (InvalidAgeException e) {
             System.out.println(e.getMessage());
         }
+
+        Penguin HHJ = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
+
+        aquatic.eatMeat(Food.MEAT);
+        terrestrial.eatPlantAndMeet(Food.BOTH);
+        penguin.eatMeat(MEAT);  // penguin is accessible here
     }
 }
